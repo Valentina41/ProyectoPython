@@ -1,0 +1,42 @@
+{% extends 'mi_app/base.html' %}
+
+{% block title %}
+    Página de Inicio
+{% endblock %}
+
+{% block content %}
+    <div class="inicio-container">
+        <div class="welcome-section">
+            <h1>{{ mensaje_bienvenida }}</h1>
+            <p>¡Bienvenido a nuestra plataforma! Explora nuestros servicios y productos.</p>
+        </div>
+
+        <div class="tortilleria-section">
+            <h2>Nuestra Tortillería</h2>
+            <p>Ofrecemos las mejores tortillas hechas con maíz de la mejor calidad. Ven y prueba la diferencia.</p>
+            <img src="/static/images/tortilleria.jpg" alt="Tortillería" class="tortilleria-img">
+        </div>
+        
+
+        <div class="items-list">
+            <h2>Explora nuestros productos</h2>
+            {% if lista_items %}
+                <ul>
+                    {% for item in lista_items %}
+                        <li class="item-card">
+                            <h3>{{ item }}</h3>
+                            <p>Este es un ejemplo de cómo puedes presentar los productos o elementos. Haz clic para obtener más detalles.</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No hay productos disponibles en este momento.</p>
+            {% endif %}
+        </div>
+
+        <div class="buttons">
+            <a href="#" class="btn">Ver más productos</a>
+            <a href="{% url 'acercade' %}" class="btn">Acerca de nosotros</a>
+        </div>
+    </div>
+{% endblock %}

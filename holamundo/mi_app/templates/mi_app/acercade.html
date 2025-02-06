@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>{{ titulo }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fuente Poppins de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #1b1b1b;
+            color: #ffffff;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            box-shadow: 0px 4px 8px rgba(255, 75, 43, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #ff416c;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* ESTILOS DEL FORMULARIO */
+        form {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #ff416c;
+            text-align: left;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #444;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="tel"]:focus {
+            border-color: #ff416c;
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            transform: scale(1.05);
+        }
+
+        /* BOTONES Y ENLACES */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-top: 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            color: white;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            transform: scale(1.1);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* ESTILOS DEL BREADCRUMB */
+        .breadcrumb {
+            display: flex;
+            padding: 10px 0;
+            list-style: none;
+            background: none;
+            margin: 0;
+            color: #ccc;
+        }
+
+        .breadcrumb li {
+            margin-right: 8px;
+        }
+
+        .breadcrumb li+li::before {
+            content: '>';
+            margin-left: 8px;
+            color: #ff416c;
+        }
+
+        .breadcrumb a {
+            color: #ff416c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+
+            form {
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'acercade' %}">Acerca de</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="/contacto/">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a href="#">Acerca de</a></li>
+        </ul>
+
+        <h1>{{ mensaje }}</h1>
+        <p>Conoce más sobre nosotros en esta página.</p>
+
+        <!-- Formulario con validación de datos -->
+<form id="miFormulario" method="POST" action="/procesar-formulario/">
+    {% csrf_token %} <!-- Agregar el token CSRF -->
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required maxlength="50" placeholder="Ingresa tu nombre">
+    
+    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+    
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" name="correo" required placeholder="Ingresa tu correo">
+    
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}" placeholder="Ingresa tu teléfono">
+    
+    <button type="submit">Enviar</button>
+</form>
+
+    </div>
+
+    <footer>
+        <!-- Tu pie de página -->
+    </footer>
+
+</body>
+</html>
